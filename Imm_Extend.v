@@ -29,19 +29,19 @@ module Imm_Extend(
     always @(*) begin
         case (ImmSRC)
 
-            // I-type: imm[11:0] = Instruction[31:20]
+            
             2'b00: begin
                 Extended = {{20{Instruction[31]}}, Instruction[31:20]};
             end
 
-            // S-type: imm[11:5]=[31:25], imm[4:0]=[11:7]
+            
             2'b01: begin
                 Extended = {{20{Instruction[31]}},
                             Instruction[31:25],
                             Instruction[11:7]};
             end
 
-            // B-type: imm[12|10:5|4:1|11|0]
+           
             2'b10: begin
                 Extended = {{19{Instruction[31]}},
                             Instruction[31],
