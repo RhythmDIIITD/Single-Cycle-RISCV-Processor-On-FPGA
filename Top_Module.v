@@ -26,7 +26,7 @@ module Top_Module (
     output [31:0] PC_Current,
     output [31:0] Instr,
 
-    // --- new outputs for registers ---
+  
     output [31:0] x0,  output [31:0] x1,  output [31:0] x2,  output [31:0] x3,
     output [31:0] x4,  output [31:0] x5,  output [31:0] x6,  output [31:0] x7,
     output [31:0] x8,  output [31:0] x9,  output [31:0] x10, output [31:0] x11,
@@ -38,13 +38,13 @@ module Top_Module (
 );
 
 
-    // ===================== PC PATH =====================
+
     wire [31:0] PC_Next;
     wire [31:0] PC_Src_1;     // PC + 4
     wire [31:0] PC_Src_2;     // PC + branch target
     wire        PC_SRC;
 
-    // ===================== INSTRUCTION FIELDS =====================
+
     wire [6:0] Opcode = Instr[6:0];
     wire [4:0] RD     = Instr[11:7];
     wire [2:0] Func3  = Instr[14:12];
@@ -53,7 +53,7 @@ module Top_Module (
     wire [6:0] Func7  = Instr[31:25];
     wire Rst;
 
-    // ===================== CONTROL SIGNALS =====================
+
     wire [1:0] ImmSRC;
     wire ResultSRC;
     wire Data_Mem_WE;
@@ -62,28 +62,23 @@ module Top_Module (
     wire RegWrite;
     wire [2:0] ALUControl;
 
-    // ===================== REGISTER FILE =====================
+
     wire [31:0] RD_1;
     wire [31:0] RD_2;
 
 
-    // ===================== IMMEDIATE =====================
+
     wire [31:0] Extended;
 
-    // ===================== ALU =====================
+ 
     wire [31:0] ALU_Data_2;
     wire [31:0] ALU_Result;
     wire Zero;
 
-    // ===================== DATA MEMORY =====================
     wire [31:0] Read_Data;
 
-    // ===================== WRITEBACK =====================
     wire [31:0] WB_Data;
 
-    // =====================================================
-    // ===================== MODULES =======================
-    // =====================================================
 
     // Instruction Memory
     Instruction_Mem IMEM (
@@ -120,7 +115,6 @@ module Top_Module (
         .RD_2(RD_2)
     );
 
-    // --- Connect individual register wires for waveform ---
     assign x0  = RF.reg_file[0];
     assign x1  = RF.reg_file[1];
     assign x2  = RF.reg_file[2];
